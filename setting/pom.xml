@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>spring-boot-stagging-parent</artifactId>
+        <artifactId>rule-engine-parent</artifactId>
         <groupId>com.qiaoyansong</groupId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-boot-stagging-setting</artifactId>
+    <artifactId>rule-engine-setting</artifactId>
     <packaging>jar</packaging>
 
     <properties>

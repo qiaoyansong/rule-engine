@@ -3,14 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>spring-boot-stagging-parent</artifactId>
+        <artifactId>rule-engine-parent</artifactId>
         <groupId>com.qiaoyansong</groupId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-boot-stagging-starter</artifactId>
+    <artifactId>rule-engine-starter</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -35,11 +35,11 @@
 <!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>com.qiaoyansong</groupId>-->
-<!--            <artifactId>spring-boot-stagging-setting</artifactId>-->
+<!--            <artifactId>rule-engine-setting</artifactId>-->
 <!--        </dependency>-->
         <dependency>
             <groupId>com.qiaoyansong</groupId>
-            <artifactId>spring-boot-stagging-service</artifactId>
+            <artifactId>rule-engine-service</artifactId>
         </dependency>
     </dependencies>
 

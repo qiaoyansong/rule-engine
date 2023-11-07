@@ -3,7 +3,7 @@
 
     <!--    property配置文件全局属性的声明，使用方式为：${声明的属性名称}。-->
     <Properties>
-        <Property name="log-path">/Users/didi/spring-boot-stagging/logs</Property>
+        <Property name="log-path">/Users/didi/rule-engine/logs</Property>
 
         <Property name="warn-log-file">warn.log</Property>
         <Property name="error-log-file">error.log</Property>
