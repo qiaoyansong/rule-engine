@@ -9,7 +9,4 @@
        http://dubbo.apache.org/schema/dubbo/dubbo.xsd
        ">
 
-    <!-- dubbo默认重试两次 -->
-<!--    <dubbo:reference interface="" id=""-->
-<!--                     version="${spring.dubbo.consumer.version}" timeout="${spring.dubbo.timeout}" registry=""/>-->
 </beans>

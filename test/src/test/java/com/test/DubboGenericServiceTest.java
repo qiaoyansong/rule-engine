@@ -1,8 +1,5 @@
 package com.test;
 
-import com.alibaba.fastjson.JSON;
-import com.api.HelloRpcService;
-import com.param.SayHelloParam;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
@@ -44,17 +41,17 @@ public class DubboGenericServiceTest {
 
     public static void main(String[] args) throws Exception {
 
-        String name = HelloRpcService.class.getName();
-        String method = "sayHello";
-        String[] paramTypes = new String[] { SayHelloParam.class.getName() };
-
-
-        SayHelloParam param = new SayHelloParam();
-        param.setUid(0);
-
-
-        Object[] paramValues = new Object[] { param};
-        Object result = callGenericService(name, method, paramTypes, paramValues);
-        System.out.println(JSON.toJSONString(result));
+//        String name = HelloRpcService.class.getName();
+//        String method = "sayHello";
+//        String[] paramTypes = new String[] { SayHelloParam.class.getName() };
+//
+//
+//        SayHelloParam param = new SayHelloParam();
+//        param.setUid(0);
+//
+//
+//        Object[] paramValues = new Object[] { param};
+//        Object result = callGenericService(name, method, paramTypes, paramValues);
+//        System.out.println(JSON.toJSONString(result));
     }
 }

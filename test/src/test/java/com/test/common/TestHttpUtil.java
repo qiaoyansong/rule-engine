@@ -1,10 +1,8 @@
 package com.test.common;
 
-import com.test.BaseTestApplication;
-import com.alibaba.fastjson.JSON;
-import com.param.SayHelloParam;
 import com.common.utils.HttpUtil;
 import com.common.utils.LogFactory;
+import com.test.BaseTestApplication;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -28,17 +26,6 @@ public class TestHttpUtil extends BaseTestApplication {
 
     @Value("${test-postUrl}")
     private String postUrl;
-
-    /**
-     * 简单测试post请求
-     */
-    @Test
-    public void testSimpleWithPost() {
-        SayHelloParam param = new SayHelloParam(1);
-        String result = httpUtil.post(postUrl, JSON.toJSONString(param));
-        Assert.assertNotNull(result);
-        System.out.println(result);
-    }
 
     /**
      * 简单测试get请求
