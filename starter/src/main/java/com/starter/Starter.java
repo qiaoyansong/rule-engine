@@ -13,8 +13,8 @@ import org.springframework.context.annotation.ImportResource;
  */
 @SpringBootApplication
 @ImportResource(locations = {"classpath*:service-*.xml"})
-@MapperScan(basePackages = {"com.dal.mapper"})
-@ComponentScan(basePackages = "com.*")
+@MapperScan(basePackages = {"com.rule.engine.dal.mapper"})
+@ComponentScan(basePackages = "com.rule.engine.*")
 public class Starter {
 
     public static void main(String[] args) {

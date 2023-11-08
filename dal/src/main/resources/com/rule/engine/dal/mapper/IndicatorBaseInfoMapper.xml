@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rule.engine.dal.mapper.IndicatorBaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.rule.engine.dal.domain.IndicatorBaseInfoDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="indicator_name" jdbcType="VARCHAR" property="indicatorName" />
+    <result column="indicator_desc" jdbcType="VARCHAR" property="indicatorDesc" />
+    <result column="indicator_return_type" jdbcType="SMALLINT" property="indicatorReturnType" />
+    <result column="indicator_type" jdbcType="SMALLINT" property="indicatorType" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="mender_id" jdbcType="BIGINT" property="menderId" />
+    <result column="mender_name" jdbcType="VARCHAR" property="menderName" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, indicator_name, indicator_desc, indicator_return_type, indicator_type, status, 
+    mender_id, mender_name, creator_id, creator_name, gmt_create, gmt_modify
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from indicator_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from indicator_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.rule.engine.dal.domain.IndicatorBaseInfoDO">
+    insert into indicator_info (id, indicator_name, indicator_desc, 
+      indicator_return_type, indicator_type, status, 
+      mender_id, mender_name, creator_id, 
+      creator_name, gmt_create, gmt_modify
+      )
+    values (#{id,jdbcType=BIGINT}, #{indicatorName,jdbcType=VARCHAR}, #{indicatorDesc,jdbcType=VARCHAR}, 
+      #{indicatorReturnType,jdbcType=SMALLINT}, #{indicatorType,jdbcType=SMALLINT}, #{status,jdbcType=SMALLINT}, 
+      #{menderId,jdbcType=BIGINT}, #{menderName,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, 
+      #{creatorName,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rule.engine.dal.domain.IndicatorBaseInfoDO">
+    insert into indicator_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="indicatorName != null">
+        indicator_name,
+      </if>
+      <if test="indicatorDesc != null">
+        indicator_desc,
+      </if>
+      <if test="indicatorReturnType != null">
+        indicator_return_type,
+      </if>
+      <if test="indicatorType != null">
+        indicator_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="menderId != null">
+        mender_id,
+      </if>
+      <if test="menderName != null">
+        mender_name,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="creatorName != null">
+        creator_name,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="indicatorName != null">
+        #{indicatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="indicatorDesc != null">
+        #{indicatorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="indicatorReturnType != null">
+        #{indicatorReturnType,jdbcType=SMALLINT},
+      </if>
+      <if test="indicatorType != null">
+        #{indicatorType,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="menderId != null">
+        #{menderId,jdbcType=BIGINT},
+      </if>
+      <if test="menderName != null">
+        #{menderName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rule.engine.dal.domain.IndicatorBaseInfoDO">
+    update indicator_info
+    <set>
+      <if test="indicatorName != null">
+        indicator_name = #{indicatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="indicatorDesc != null">
+        indicator_desc = #{indicatorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="indicatorReturnType != null">
+        indicator_return_type = #{indicatorReturnType,jdbcType=SMALLINT},
+      </if>
+      <if test="indicatorType != null">
+        indicator_type = #{indicatorType,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="menderId != null">
+        mender_id = #{menderId,jdbcType=BIGINT},
+      </if>
+      <if test="menderName != null">
+        mender_name = #{menderName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="creatorName != null">
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rule.engine.dal.domain.IndicatorBaseInfoDO">
+    update indicator_info
+    set indicator_name = #{indicatorName,jdbcType=VARCHAR},
+      indicator_desc = #{indicatorDesc,jdbcType=VARCHAR},
+      indicator_return_type = #{indicatorReturnType,jdbcType=SMALLINT},
+      indicator_type = #{indicatorType,jdbcType=SMALLINT},
+      status = #{status,jdbcType=SMALLINT},
+      mender_id = #{menderId,jdbcType=BIGINT},
+      mender_name = #{menderName,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryIndicatorByIndicatorId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from indicator_info
+    <where>
+      id = #{indicatorId}
+      <if test="status != null">
+        and status = #{status}
+      </if>
+    </where>
+    limit 1
+  </select>
+</mapper>
