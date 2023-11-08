@@ -36,6 +36,7 @@
         <log4j2.version>2.19.0</log4j2.version>
         <log4j-over-slf4j.version>1.7.36</log4j-over-slf4j.version>
         <disruptor.version>3.4.4</disruptor.version>
+        <groovy.version>3.0.6</groovy.version>
     </properties>
 
     <dependencyManagement>
@@ -142,6 +143,17 @@
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${org.mapstruct.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-json</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-jsr223</artifactId>
+                <version>${groovy.version}</version>
+            </dependency>
+
             <!--module-->
             <dependency>
                 <groupId>com.qiaoyansong</groupId>

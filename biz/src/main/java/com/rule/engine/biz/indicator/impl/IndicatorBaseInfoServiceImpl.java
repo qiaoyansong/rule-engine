@@ -7,15 +7,14 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.rule.engine.api.enums.IndicatorConfigStatusEnum;
+import com.rule.engine.biz.beanmapper.IndicatorBeanMapper;
 import com.rule.engine.biz.bo.IndicatorBaseInfoBO;
 import com.rule.engine.biz.indicator.IndicatorBaseInfoService;
 import com.rule.engine.common.constant.CommonConstant;
 import com.rule.engine.common.utils.ThreadPoolUtil;
-import com.rule.engine.dal.domain.IndicatorBaseInfoDO;
 import com.rule.engine.dal.mapper.IndicatorBaseInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -33,6 +32,9 @@ public class IndicatorBaseInfoServiceImpl implements IndicatorBaseInfoService {
 
     @Resource
     private IndicatorBaseInfoMapper indicatorBaseInfoMapper;
+
+    @Resource
+    private IndicatorBeanMapper indicatorBeanMapper;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorBaseInfoServiceImpl.class);
 
@@ -78,15 +80,8 @@ public class IndicatorBaseInfoServiceImpl implements IndicatorBaseInfoService {
     }
 
     private IndicatorBaseInfoBO getIndicatorBaseInfoBOByIndicatorId(Long indicatorId) {
-        IndicatorBaseInfoDO indicatorBaseInfoDO = indicatorBaseInfoMapper.queryIndicatorByIndicatorId(indicatorId,
-                IndicatorConfigStatusEnum.STATUS_ACTIVE.getCode());
-        if (indicatorBaseInfoDO == null) {
-            return null;
-        }
-
-        IndicatorBaseInfoBO indicatorBaseInfoBO = new IndicatorBaseInfoBO();
-        BeanUtils.copyProperties(indicatorBaseInfoDO, indicatorBaseInfoBO);
-        return indicatorBaseInfoBO;
+        return indicatorBeanMapper.indicatorBaseInfoDO2IndicatorBaseInfoBO(indicatorBaseInfoMapper.queryIndicatorByIndicatorId(indicatorId,
+                IndicatorConfigStatusEnum.STATUS_ACTIVE.getCode()));
     }
 
     private class IndicatorBaseInfoRefreshCallable implements Callable<IndicatorBaseInfoBO> {

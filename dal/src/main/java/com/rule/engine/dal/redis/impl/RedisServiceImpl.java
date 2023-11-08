@@ -31,6 +31,15 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
+    public boolean setex(String key, int seconds, String value) {
+        try(Jedis jedis = jedisPool.getResource()){
+            String result = jedis.setex(key, seconds, value);
+            REDIS_SYNC_LOG.info("[RedisServiceImpl#setex] key={}, value={}, result={}", key, value, result);
+            return "OK".equalsIgnoreCase(result);
+        }
+    }
+
+    @Override
     public String get(String key) {
         try(Jedis jedis = jedisPool.getResource()){
             String result = jedis.get(key);

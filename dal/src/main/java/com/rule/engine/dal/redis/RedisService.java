@@ -16,6 +16,15 @@ public interface RedisService {
     boolean set(String key, String value);
 
     /**
+     * 设置缓存
+     * @param key
+     * @param value
+     * @param seconds
+     * @return 缓存是否设置成功
+     */
+    boolean setex(String key, int seconds, String value);
+
+    /**
      * 获取缓存
      * @param key
      * @return
