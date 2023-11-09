@@ -1,6 +1,7 @@
 package com.rule.engine.api.utils;
 
 import com.rule.engine.api.constant.RpcCode;
+import com.rule.engine.api.enums.ErrorCodeEnum;
 import com.rule.engine.api.result.RpcResult;
 
 /**
@@ -24,6 +25,22 @@ public class RpcResultUtil {
         result.setMsg("SUCCESS");
         result.setCode(RpcCode.SUCCESS);
         return result;
+    }
+
+    public static <T> RpcResult<T> fail(String msg) {
+        return fail(null, RpcCode.SYSTEM_ERROR, msg);
+    }
+
+    public static <T> RpcResult<T> fail() {
+        return fail(null, RpcCode.SYSTEM_ERROR, ErrorCodeEnum.SYSTEM_ERROR.getDesc());
+    }
+
+    public static <T> RpcResult<T> fail(ErrorCodeEnum errorCodeEnum) {
+        return fail(errorCodeEnum.getCode(), errorCodeEnum.getDesc());
+    }
+
+    public static <T> RpcResult<T> fail(Integer code, String message){
+        return fail(null, code, message);
     }
 
     public static <T> RpcResult<T> fail(T data, Integer code, String message){

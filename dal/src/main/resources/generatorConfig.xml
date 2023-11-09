@@ -55,7 +55,7 @@
         </javaClientGenerator>
 
         <!-- ===========================表名=================================================== -->
-        <table tableName="event_base_info" domainObjectName="EventBaseInfo"  enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableUpdateByExample="false" enableDeleteByExample="false"
+        <table tableName="indicator_rule_event_parsing_info" domainObjectName="indicatorRuleEventParsingInfo"  enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableUpdateByExample="false" enableDeleteByExample="false"
                selectByExampleQueryId="false"  enableInsert="true" enableCountByExample="false" enableSelectByExample="false">
             <!--使用真实列的名字 false不使用（默认 如果有下划线转为驼峰） true使用-->
             <property name="useActualColumnNames" value="false"/>

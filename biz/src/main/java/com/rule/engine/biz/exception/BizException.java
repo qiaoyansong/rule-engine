@@ -1,5 +1,6 @@
-package com.rule.engine.common.exception;
+package com.rule.engine.biz.exception;
 
+import com.rule.engine.api.enums.ErrorCodeEnum;
 import lombok.Data;
 
 /**
@@ -33,6 +34,17 @@ public class BizException extends RuntimeException{
         super(msg);
         this.code = code;
         this.msg = msg;
+    }
+
+    public BizException(ErrorCodeEnum code, String msg) {
+        super(msg);
+        this.code = code.getCode();
+        this.msg = msg;
+    }
+
+    public BizException(ErrorCodeEnum code) {
+        this.code = code.getCode();
+        this.msg = code.getDesc();
     }
 
 }

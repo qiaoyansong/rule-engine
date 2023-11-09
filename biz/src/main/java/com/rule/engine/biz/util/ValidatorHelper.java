@@ -1,7 +1,8 @@
-package com.rule.engine.common.utils;
+package com.rule.engine.biz.util;
 
+import com.rule.engine.biz.exception.BizException;
 import com.rule.engine.common.enums.ErrorEnum;
-import com.rule.engine.common.exception.BizException;
+import com.rule.engine.common.utils.LogFactory;
 import org.hibernate.validator.HibernateValidator;
 import org.slf4j.Logger;
 

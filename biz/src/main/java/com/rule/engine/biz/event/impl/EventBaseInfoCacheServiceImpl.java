@@ -5,7 +5,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.rule.engine.api.enums.ErrorCodeEnum;
 import com.rule.engine.biz.event.EventBaseInfoCacheService;
 import com.rule.engine.common.constant.CacheKeys;
-import com.rule.engine.common.exception.BizException;
+import com.rule.engine.biz.exception.BizException;
 import com.rule.engine.dal.redis.RedisService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

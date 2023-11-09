@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rule.engine.dal.mapper.IndicatorRuleEventParsingInfoMapper">
+  <resultMap id="BaseResultMap" type="com.rule.engine.dal.domain.IndicatorRuleEventParsingInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="indicator_id" jdbcType="BIGINT" property="indicatorId" />
+    <result column="event_id" jdbcType="BIGINT" property="eventId" />
+    <result column="marshall_field" jdbcType="VARCHAR" property="marshallField" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, indicator_id, event_id, marshall_field, status, gmt_create, gmt_modify
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from indicator_rule_event_parsing_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from indicator_rule_event_parsing_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.rule.engine.dal.domain.IndicatorRuleEventParsingInfo">
+    insert into indicator_rule_event_parsing_info (id, indicator_id, event_id, 
+      marshall_field, status, gmt_create, 
+      gmt_modify)
+    values (#{id,jdbcType=BIGINT}, #{indicatorId,jdbcType=BIGINT}, #{eventId,jdbcType=BIGINT}, 
+      #{marshallField,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModify,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rule.engine.dal.domain.IndicatorRuleEventParsingInfo">
+    insert into indicator_rule_event_parsing_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="indicatorId != null">
+        indicator_id,
+      </if>
+      <if test="eventId != null">
+        event_id,
+      </if>
+      <if test="marshallField != null">
+        marshall_field,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="indicatorId != null">
+        #{indicatorId,jdbcType=BIGINT},
+      </if>
+      <if test="eventId != null">
+        #{eventId,jdbcType=BIGINT},
+      </if>
+      <if test="marshallField != null">
+        #{marshallField,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rule.engine.dal.domain.IndicatorRuleEventParsingInfo">
+    update indicator_rule_event_parsing_info
+    <set>
+      <if test="indicatorId != null">
+        indicator_id = #{indicatorId,jdbcType=BIGINT},
+      </if>
+      <if test="eventId != null">
+        event_id = #{eventId,jdbcType=BIGINT},
+      </if>
+      <if test="marshallField != null">
+        marshall_field = #{marshallField,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rule.engine.dal.domain.IndicatorRuleEventParsingInfo">
+    update indicator_rule_event_parsing_info
+    set indicator_id = #{indicatorId,jdbcType=BIGINT},
+      event_id = #{eventId,jdbcType=BIGINT},
+      marshall_field = #{marshallField,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="listEventIndicatorRuleByEventId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from indicator_rule_event_parsing_info
+    <where>
+      event_id = #{eventId}
+      <if test="status != null">
+        and status = #{status}
+      </if>
+    </where>
+  </select>
+</mapper>

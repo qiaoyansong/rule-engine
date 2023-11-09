@@ -186,4 +186,18 @@
     </where>
     limit 1
   </select>
+  <select id="listIndicatorBaseInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from indicator_info
+    <where>
+      id in
+      <foreach collection="indicatorIds" item="indicatorId" index="index" open="(" close=")" separator=",">
+        #{indicatorId}
+      </foreach>
+      <if test="status != null">
+        and status = #{status}
+      </if>
+    </where>
+  </select>
 </mapper>
