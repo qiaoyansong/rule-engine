@@ -21,7 +21,7 @@ public interface DagService {
     <T> boolean isDag(Digraph<T> digraph);
 
     /**
-     * 判断一个图是否有环
+     * 根据图批量生成调度信息
      *
      * @param digraph
      * @return
