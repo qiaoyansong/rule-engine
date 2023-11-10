@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -122,6 +123,28 @@ public class Digraph<T> {
         return digraph;
     }
 
+    /**
+     * 删除指定的节点
+     */
+    public void removeTarNodes(Set<T> tarNodes) {
+        if (CollectionUtils.isEmpty(tarNodes)) {
+            return;
+        }
+        Iterator<DigraphTuple<T>> iterator = bagTuple.iterator();
+        DigraphTuple<T> tuple;
+        while (iterator.hasNext()) {
+            tuple = iterator.next();
+            for (T tarNode : tarNodes) {
+                if (tuple.node.equals(tarNode)) {
+                    // 1、删除头节点结构
+                    iterator.remove();
+                }
+                // 2、删除作为出度的节点node
+                tuple.removeNode(tarNode);
+            }
+        }
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
@@ -153,6 +176,38 @@ public class Digraph<T> {
                 curNode.next = dagBagNode;
                 dagBagNode = curNode;
             }
+        }
+
+        public void removeNode(T item) {
+            Preconditions.checkArgument(item != null);
+            if (Objects.isNull(dagBagNode)) {
+                return;
+            }
+            DAGBagNode<T> head = null;
+            DAGBagNode<T> curNode = dagBagNode;
+            while (Objects.nonNull(curNode)) {
+                if (!item.equals(curNode.item)) {
+                    head = curNode;
+                    break;
+                }
+                curNode = curNode.next;
+            }
+            if (Objects.isNull(head)) {
+                dagBagNode = null;
+                return;
+            }
+            DAGBagNode<T> preNode = head;
+            curNode = head.next;
+            while (Objects.nonNull(curNode)) {
+                if (item.equals(curNode.item)) {
+                    preNode.next = curNode.next;
+                    curNode = curNode.next;
+                } else {
+                    curNode = curNode.next;
+                    preNode = preNode.next;
+                }
+            }
+            dagBagNode = head;
         }
 
         @Data

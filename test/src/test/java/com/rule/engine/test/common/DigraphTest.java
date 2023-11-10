@@ -3,7 +3,7 @@ package com.rule.engine.test.common;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.rule.engine.biz.dag.DagJudgeService;
+import com.rule.engine.biz.dag.DagService;
 import com.rule.engine.common.utils.dag.Digraph;
 import com.rule.engine.test.BaseTestApplication;
 import org.apache.commons.collections4.CollectionUtils;
@@ -20,7 +20,7 @@ import java.util.List;
 public class DigraphTest extends BaseTestApplication {
 
     @Resource
-    private DagJudgeService dagJudgeService;
+    private DagService dagService;
 
     /**
      *     1
@@ -85,7 +85,7 @@ public class DigraphTest extends BaseTestApplication {
         System.out.println(JSON.toJSONString(digraph.fetchEdgesByVertex(4)));
         System.out.println(JSON.toJSONString(digraph.fetchEdgesByVertex(5)));
         System.out.println(JSON.toJSONString(digraph.fetchAllVertex()));
-        System.out.println(dagJudgeService.isDag(digraph));
+        System.out.println(dagService.isDag(digraph));
     }
 
     @Test
@@ -103,6 +103,6 @@ public class DigraphTest extends BaseTestApplication {
         System.out.println(JSON.toJSONString(digraph.fetchEdgesByVertex(4)));
         System.out.println(JSON.toJSONString(digraph.fetchEdgesByVertex(5)));
         System.out.println(JSON.toJSONString(digraph.fetchAllVertex()));
-        System.out.println(dagJudgeService.isDag(digraph));
+        System.out.println(dagService.isDag(digraph));
     }
 }
