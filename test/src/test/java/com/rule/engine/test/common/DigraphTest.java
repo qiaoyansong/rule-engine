@@ -3,6 +3,7 @@ package com.rule.engine.test.common;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.rule.engine.biz.bo.StageInfoBO;
 import com.rule.engine.biz.dag.DagService;
 import com.rule.engine.common.utils.dag.Digraph;
 import com.rule.engine.test.BaseTestApplication;
@@ -56,7 +57,9 @@ public class DigraphTest extends BaseTestApplication {
 
     /**
      * 需要注意的是，这种递归方式生成dag图，如果本身存在循环引用的问题 会导致栈溢出
-     * 但是Digraph提供了 判断图是否存在环的方法(适用于代码手动 addNode addEdge而不是通过递归的方式 这点需要特别注意)
+     * ① 但是Digraph提供了 判断图是否存在环的方法(适用于代码手动 addNode addEdge而不是通过递归的方式 这点需要特别注意)
+     * ② 如果Digraph本身有环，那么buildBatchExecuteInfo是会忽略有环的那一部分的，因为buildBatchExecuteInfo会获取叶子结点，即出度为0，有环的
+     * 最终无论如何都会有节点出度不为0
      */
     private void buildExecutionDAGInternal(int i, Digraph<Integer> digraph) {
         digraph.addNode(i);
@@ -88,6 +91,12 @@ public class DigraphTest extends BaseTestApplication {
         System.out.println(dagService.isDag(digraph));
     }
 
+    /**
+     * 1   2
+     *   3
+     *  4
+     * 5
+     */
     @Test
     public void isCyclicDependence_Test_NotDAG() {
         Digraph<Integer> digraph = new Digraph<>();
@@ -104,5 +113,21 @@ public class DigraphTest extends BaseTestApplication {
         System.out.println(JSON.toJSONString(digraph.fetchEdgesByVertex(5)));
         System.out.println(JSON.toJSONString(digraph.fetchAllVertex()));
         System.out.println(dagService.isDag(digraph));
+        List<StageInfoBO<Integer>> stageInfoBOS = dagService.buildBatchExecuteInfo(digraph);
+        System.out.println(JSON.toJSONString(stageInfoBOS));
+    }
+
+    /**
+     *     1
+     *  2    3
+     * 4   5  6
+     *    7
+     */
+    @Test
+    public void buildBatchExecuteInfo_Test_simple() {
+        Digraph<Integer> digraph = new Digraph<>();
+        buildExecutionDAGInternal(1, digraph);
+        List<StageInfoBO<Integer>> stageInfoBOS = dagService.buildBatchExecuteInfo(digraph);
+        System.out.println(JSON.toJSONString(stageInfoBOS));
     }
 }
