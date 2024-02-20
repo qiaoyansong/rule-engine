@@ -5,21 +5,17 @@ import lombok.Getter;
 
 /**
  * @author ：Qiao Yansong
- * @date ：Created in 2023/11/8 5:01 下午
+ * @date ：Created in 2024/1/29 3:18 下午
  * description：
  */
 @Getter
 @AllArgsConstructor
-public enum EventSourceEnum {
+public enum InputTypeEnum {
 
-    /**
-     * 消息
-     */
-    MQ(1, "使用MQ的方式"),
-    /**
-     * RPC 调用
-     */
-    INTERFACE(2, "直接调用接口的方式");
+    INPUT(1, "输入框组件"),
+    DROPDOWN_RADIO_SELECTION(2, "下拉单选组件"),
+    DROPDOWN_MULTIPLE_SELECTION(3, "下拉多选组件"),
+    ;
     private Integer code;
     private String desc;
 }

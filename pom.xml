@@ -195,6 +195,11 @@
                 <artifactId>rule-engine-api</artifactId>
                 <version>${revision}</version>
             </dependency>
+            <dependency>
+                <groupId>com.qiaoyansong</groupId>
+                <artifactId>rule-engine-api-mis</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -209,6 +214,7 @@
         <module>biz</module>
         <module>task</module>
         <module>test</module>
+        <module>api-mis</module>
     </modules>
 
     <build>

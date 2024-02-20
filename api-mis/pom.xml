@@ -8,38 +8,20 @@
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rule-engine-biz</artifactId>
+    <artifactId>rule-engine-api-mis</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.qiaoyansong</groupId>
-            <artifactId>rule-engine-dal</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.qiaoyansong</groupId>
-            <artifactId>rule-engine-integration</artifactId>
+            <artifactId>rule-engine-common</artifactId>
         </dependency>
         <dependency>
             <groupId>com.qiaoyansong</groupId>
             <artifactId>rule-engine-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.qiaoyansong</groupId>
-            <artifactId>rule-engine-api-mis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
         </dependency>
     </dependencies>
 

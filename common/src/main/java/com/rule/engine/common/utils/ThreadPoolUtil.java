@@ -38,4 +38,17 @@ public class ThreadPoolUtil {
                     new LinkedBlockingQueue<>(100000),
                     new ThreadFactoryBuilder().setNameFormat("event-parsing-indicator-info-refresh-pool_").build(),
                     new ThreadPoolExecutor.CallerRunsPolicy());
+
+    /**
+     * 事件解析指标规则基础信息更新线程池
+     */
+    public static final ThreadPoolExecutor GENERIC_SERVICE_REFRESH =
+            new ThreadPoolExecutor(
+                    15,
+                    15,
+                    0,
+                    TimeUnit.MILLISECONDS,
+                    new LinkedBlockingQueue<>(100000),
+                    new ThreadFactoryBuilder().setNameFormat("generic-service-refresh-pool_").build(),
+                    new ThreadPoolExecutor.CallerRunsPolicy());
 }

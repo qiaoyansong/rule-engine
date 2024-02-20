@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rule.engine.dal.mapper.RemoteMethodInfoMapper">
+  <resultMap id="BaseResultMap" type="com.rule.engine.dal.domain.RemoteMethodInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="remote_method_name" jdbcType="VARCHAR" property="remoteMethodName" />
+    <result column="remote_method_return_type" jdbcType="SMALLINT" property="remoteMethodReturnType" />
+    <result column="remote_method_desc" jdbcType="VARCHAR" property="remoteMethodDesc" />
+    <result column="arg_info" jdbcType="VARCHAR" property="argInfo" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, remote_method_name, remote_method_return_type, remote_method_desc, arg_info, 
+    gmt_create, gmt_modify
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from remote_method_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from remote_method_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.rule.engine.dal.domain.RemoteMethodInfo">
+    insert into remote_method_info (id, remote_method_name, remote_method_return_type, 
+      remote_method_desc, arg_info, gmt_create, 
+      gmt_modify)
+    values (#{id,jdbcType=BIGINT}, #{remoteMethodName,jdbcType=VARCHAR}, #{remoteMethodReturnType,jdbcType=SMALLINT}, 
+      #{remoteMethodDesc,jdbcType=VARCHAR}, #{argInfo,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModify,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rule.engine.dal.domain.RemoteMethodInfo">
+    insert into remote_method_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="remoteMethodName != null">
+        remote_method_name,
+      </if>
+      <if test="remoteMethodReturnType != null">
+        remote_method_return_type,
+      </if>
+      <if test="remoteMethodDesc != null">
+        remote_method_desc,
+      </if>
+      <if test="argInfo != null">
+        arg_info,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="remoteMethodName != null">
+        #{remoteMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteMethodReturnType != null">
+        #{remoteMethodReturnType,jdbcType=SMALLINT},
+      </if>
+      <if test="remoteMethodDesc != null">
+        #{remoteMethodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="argInfo != null">
+        #{argInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rule.engine.dal.domain.RemoteMethodInfo">
+    update remote_method_info
+    <set>
+      <if test="remoteMethodName != null">
+        remote_method_name = #{remoteMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="remoteMethodReturnType != null">
+        remote_method_return_type = #{remoteMethodReturnType,jdbcType=SMALLINT},
+      </if>
+      <if test="remoteMethodDesc != null">
+        remote_method_desc = #{remoteMethodDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="argInfo != null">
+        arg_info = #{argInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rule.engine.dal.domain.RemoteMethodInfo">
+    update remote_method_info
+    set remote_method_name = #{remoteMethodName,jdbcType=VARCHAR},
+      remote_method_return_type = #{remoteMethodReturnType,jdbcType=SMALLINT},
+      remote_method_desc = #{remoteMethodDesc,jdbcType=VARCHAR},
+      arg_info = #{argInfo,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
