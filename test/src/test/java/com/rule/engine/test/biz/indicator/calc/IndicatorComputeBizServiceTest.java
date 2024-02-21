@@ -1,7 +1,6 @@
 package com.rule.engine.test.biz.indicator.calc;
 
 import com.alibaba.fastjson.JSON;
-import com.rule.engine.api.enums.EventSourceEnum;
 import com.rule.engine.api.result.indicator.IndicatorResultInfo;
 import com.rule.engine.biz.indicator.calc.IndicatorComputeBizService;
 import com.rule.engine.test.BaseTestApplication;
@@ -26,7 +25,7 @@ public class IndicatorComputeBizServiceTest extends BaseTestApplication {
                 "  \"bizType\": 1,\n" +
                 "  \"clientType\": 5\n" +
                 "}";
-        IndicatorResultInfo indicatorResultInfo = indicatorComputeBizService.handleBatchIndicatorCalculation(EventSourceEnum.MQ.getCode(), "test_mq_topic", body);
+        IndicatorResultInfo indicatorResultInfo = indicatorComputeBizService.handleBatchIndicatorCalculation("test_mq_topic", body);
         Assert.assertNotNull(indicatorResultInfo);
         System.out.println(JSON.toJSONString(indicatorResultInfo.getIndicatorResultDetails()));
     }

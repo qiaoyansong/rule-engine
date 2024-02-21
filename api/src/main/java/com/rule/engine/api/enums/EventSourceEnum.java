@@ -13,11 +13,12 @@ import lombok.Getter;
 public enum EventSourceEnum {
 
     /**
-     * 消息
+     * 消息，系统内部通过mq consumer的方式进行处理
      */
-    MQ(1, "使用MQ的方式"),
+    MQ(1, "MQ"),
+
     /**
-     * RPC 调用
+     * 外部服务，直接通过rpc调用本服务
      */
     INTERFACE(2, "直接调用接口的方式");
     private Integer code;

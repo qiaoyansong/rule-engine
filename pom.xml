@@ -215,6 +215,7 @@
         <module>task</module>
         <module>test</module>
         <module>api-mis</module>
+        <module>doc</module>
     </modules>
 
     <build>

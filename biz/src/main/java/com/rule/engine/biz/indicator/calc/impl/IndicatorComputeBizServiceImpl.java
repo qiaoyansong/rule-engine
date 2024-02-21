@@ -1,6 +1,7 @@
 package com.rule.engine.biz.indicator.calc.impl;
 
 import com.rule.engine.api.enums.ErrorCodeEnum;
+import com.rule.engine.api.enums.EventSourceEnum;
 import com.rule.engine.api.enums.IndicatorValueTypeEnum;
 import com.rule.engine.api.result.indicator.IndicatorResultInfo;
 import com.rule.engine.biz.bo.EventBO;
@@ -33,9 +34,9 @@ public class IndicatorComputeBizServiceImpl implements IndicatorComputeBizServic
     private EventParsingIndicatorInfoService eventParsingIndicatorInfoService;
 
     @Override
-    public IndicatorResultInfo handleBatchIndicatorCalculation(Integer eventSource, String eventName, String body) {
+    public IndicatorResultInfo handleBatchIndicatorCalculation(String eventName, String body) {
         // 获取匹配的事件
-        EventBO bodyMatchEvent = eventBaseInfoService.getBodyMatchEvent(eventSource, eventName, body);
+        EventBO bodyMatchEvent = eventBaseInfoService.getBodyMatchEvent(EventSourceEnum.INTERFACE.getCode(), eventName, body);
         if (Objects.isNull(bodyMatchEvent)) {
             throw new BizException(ErrorCodeEnum.NON_MATCH_EVENT);
         }

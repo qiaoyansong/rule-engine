@@ -30,17 +30,17 @@ public class IndicatorComputeServiceImpl implements IndicatorComputeService {
     private IndicatorComputeBizService indicatorComputeBizService;
 
     @Override
-    public RpcResult<IndicatorResultInfo> handleBatchIndicatorCalculation(Integer eventSource, String eventName, String body) {
+    public RpcResult<IndicatorResultInfo> handleBatchIndicatorCalculation(String eventName, String body) {
         try {
             BizChecker.check(Objects.nonNull(eventName), ErrorCodeEnum.PARAM_ERROR);
             BizChecker.check(StringUtils.isNotBlank(eventName), ErrorCodeEnum.PARAM_ERROR);
             BizChecker.check(StringUtils.isNotBlank(body), ErrorCodeEnum.PARAM_ERROR);
-            return RpcResultUtil.success(indicatorComputeBizService.handleBatchIndicatorCalculation(eventSource, eventName, body));
+            return RpcResultUtil.success(indicatorComputeBizService.handleBatchIndicatorCalculation(eventName, body));
         } catch (BizException e) {
-            LOGGER.warn("IndicatorComputeService#handleBatchIndicatorCalculation warn eventSource={}, eventName={}, body={}, e=", eventSource, eventName, body, e);
+            LOGGER.warn("IndicatorComputeService#handleBatchIndicatorCalculation warn eventName={}, body={}, e=", eventName, body, e);
             return RpcResultUtil.fail(e.getCode(), e.getMsg());
         } catch (Exception e) {
-            LOGGER.warn("IndicatorComputeService#handleBatchIndicatorCalculation error eventSource={}, eventName:{}, body={}, e=", eventSource, eventName, body, e);
+            LOGGER.warn("IndicatorComputeService#handleBatchIndicatorCalculation error eventName:{}, body={}, e=", eventName, body, e);
             return RpcResultUtil.fail(ErrorCodeEnum.SYSTEM_ERROR);
         }
     }

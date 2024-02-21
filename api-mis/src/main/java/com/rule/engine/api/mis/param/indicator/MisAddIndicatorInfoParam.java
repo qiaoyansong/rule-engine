@@ -1,9 +1,6 @@
 package com.rule.engine.api.mis.param.indicator;
 
-import com.rule.engine.api.enums.IndicatorTypeEnum;
-import com.rule.engine.api.enums.IndicatorValueTypeEnum;
-import com.rule.engine.api.enums.InputTypeEnum;
-import com.rule.engine.api.enums.JudgeTypeEnum;
+import com.rule.engine.api.enums.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,7 +37,7 @@ public class MisAddIndicatorInfoParam implements Serializable {
     private Integer indicatorType;
 
     /**
-     * 指标值类型
+     * 指标值类型，如果是三方服务，则指标值类型为三方服务的返回值类型，且不支持修改
      * #{@link IndicatorValueTypeEnum}
      */
     private Integer indicatorValueType;
@@ -90,17 +87,18 @@ public class MisAddIndicatorInfoParam implements Serializable {
             private static final long serialVersionUID = -5602712799690135204L;
 
             /**
-             * 实际参数名字.
+             * 实际参数名字 对应三方服务接口的形参名称，仅展示 不支持修改
              */
             private String argName;
 
             /**
-             * 是否动态参数
+             * 是否动态参数，如果是动态参数 支持进行参数交互输入，即允许手动输入参数
              */
             private Boolean dynamicArg;
 
             /**
              * 引用类型
+             * #{@link RefTypeEnum}
              */
             private Integer argRefType;
 
@@ -110,13 +108,13 @@ public class MisAddIndicatorInfoParam implements Serializable {
             private Object argValue;
 
             /**
-             * 参数数据类型
+             * 参数数据类型,外部三方服务 对应形参的类型 只支持查看不支持变更
              * #{@link IndicatorValueTypeEnum}
              */
             private Integer argType;
 
             /**
-             * 参数交互输入类型
+             * 参数交互输入类型，当且仅当为动态参数的时候 支持填写
              * #{@link InputTypeEnum}
              */
             private Integer argInputType;
@@ -154,7 +152,7 @@ public class MisAddIndicatorInfoParam implements Serializable {
 
         /**
          * 操作符类型
-         * #{@link JudgeTypeEnum}
+         * #{@link JudgeTypeEnum#character}
          */
         private List<Integer> judgeTypeList;
 

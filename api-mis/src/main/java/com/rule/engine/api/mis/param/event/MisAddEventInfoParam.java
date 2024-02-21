@@ -1,26 +1,26 @@
-package com.rule.engine.biz.bo;
+package com.rule.engine.api.mis.param.event;
 
+import com.rule.engine.api.mis.param.BaseMisOptParam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author ：Qiao Yansong
- * @date ：Created in 2023/11/8 5:24 下午
+ * @date ：Created in 2024/2/21 11:37 上午
  * description：
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventBO {
+public class MisAddEventInfoParam extends BaseMisOptParam implements Serializable {
+
+    private static final long serialVersionUID = 332961342689906061L;
 
     /**
-     * 主键id
-     */
-    private Long id;
-
-    /**
-     * 事件来源
+     * 事件类型
      * #{@link com.rule.engine.api.enums.EventSourceEnum}
      */
     private Integer eventSource;
@@ -41,22 +41,13 @@ public class EventBO {
     private String eventDesc;
 
     /**
-     * 事件说明
+     * 事件模板
      */
     private String eventTemplate;
-
-    /**
-     * 操作人id
-     */
-    private Long operatorId;
-
-    /**
-     * 操作人名字
-     */
-    private String operatorName;
 
     /**
      * 校验脚本
      */
     private String checkScript;
+
 }

@@ -16,7 +16,7 @@ public class EventBaseInfoDO {
     private Integer eventSource;
 
     /**
-     * 事件标识 MQ时为topic, 接口时为全限定名
+     * 事件标识
      */
     private String eventIdentifier;
 
