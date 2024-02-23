@@ -26,6 +26,7 @@ import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.rpc.service.GenericService;
+import org.apache.dubbo.spring.boot.autoconfigure.DubboConfigurationProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -55,9 +56,10 @@ public class GenericOptServiceImpl implements GenericOptService {
     private RemoteMethodCalculationBeanMapper remoteMethodCalculationBeanMapper;
 
     @Resource
+    private DubboConfigurationProperties dubboConfigurationProperties;
+
     private ApplicationConfig applicationConfig;
 
-    @Resource
     private RegistryConfig registryConfig;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GenericOptServiceImpl.class);
@@ -225,6 +227,9 @@ public class GenericOptServiceImpl implements GenericOptService {
                         return listeningExecutor.submit(refreshCallable);
                     }
                 });
+        // todo 不同dubbo配置 获取的方式可能不同，比如多注册中心 就需要dubboConfigurationProperties.getRegistries()
+        applicationConfig = dubboConfigurationProperties.getApplication();
+        registryConfig = dubboConfigurationProperties.getRegistry();
     }
 
     private class EventParseIndicatorInfoRefreshCallable implements Callable<ReferenceConfig<GenericService>> {

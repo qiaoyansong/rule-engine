@@ -3,7 +3,7 @@ package com.rule.engine.test.biz.event;
 import com.alibaba.fastjson.JSON;
 import com.rule.engine.api.enums.EventSourceEnum;
 import com.rule.engine.biz.bo.EventBO;
-import com.rule.engine.biz.event.EventBaseInfoService;
+import com.rule.engine.biz.event.EventQryService;
 import com.rule.engine.test.BaseTestApplication;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,17 +17,17 @@ import java.util.Map;
  * @date ：Created in 2023/11/8 7:44 下午
  * description：
  */
-public class EventBaseInfoServiceTest extends BaseTestApplication {
+public class EventQryServiceTest extends BaseTestApplication {
 
     @Resource
-    private EventBaseInfoService eventBaseInfoService;
+    private EventQryService eventQryService;
 
     @Test
     public void getBodyMatchEvent_Test_nonMatch() {
         Map map = new HashMap();
         map.put("bizType", 2);
         map.put("clientType", 5);
-        EventBO eventBO = eventBaseInfoService.getBodyMatchEvent(EventSourceEnum.MQ.getCode(), "test_mq_topic", JSON.toJSONString(map));
+        EventBO eventBO = eventQryService.getBodyMatchEvent(EventSourceEnum.MQ.getCode(), "test_mq_topic", JSON.toJSONString(map));
         Assert.assertNull(eventBO);
     }
 
@@ -36,7 +36,7 @@ public class EventBaseInfoServiceTest extends BaseTestApplication {
         Map map = new HashMap();
         map.put("bizType", 1);
         map.put("clientType", 5);
-        EventBO eventBO = eventBaseInfoService.getBodyMatchEvent(EventSourceEnum.MQ.getCode(), "test_mq_topic", JSON.toJSONString(map));
+        EventBO eventBO = eventQryService.getBodyMatchEvent(EventSourceEnum.MQ.getCode(), "test_mq_topic", JSON.toJSONString(map));
         System.out.println(JSON.toJSONString(eventBO));
     }
 

@@ -6,7 +6,7 @@ import com.rule.engine.api.enums.IndicatorValueTypeEnum;
 import com.rule.engine.api.result.indicator.IndicatorResultInfo;
 import com.rule.engine.biz.bo.EventBO;
 import com.rule.engine.biz.bo.EventParseIndicatorInfoBO;
-import com.rule.engine.biz.event.EventBaseInfoService;
+import com.rule.engine.biz.event.EventQryService;
 import com.rule.engine.biz.exception.BizException;
 import com.rule.engine.biz.indicator.calc.EventParsingIndicatorInfoService;
 import com.rule.engine.biz.indicator.calc.IndicatorComputeBizService;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class IndicatorComputeBizServiceImpl implements IndicatorComputeBizService {
 
     @Resource
-    private EventBaseInfoService eventBaseInfoService;
+    private EventQryService eventQryService;
 
     @Resource
     private EventParsingIndicatorInfoService eventParsingIndicatorInfoService;
@@ -36,7 +36,7 @@ public class IndicatorComputeBizServiceImpl implements IndicatorComputeBizServic
     @Override
     public IndicatorResultInfo handleBatchIndicatorCalculation(String eventName, String body) {
         // 获取匹配的事件
-        EventBO bodyMatchEvent = eventBaseInfoService.getBodyMatchEvent(EventSourceEnum.INTERFACE.getCode(), eventName, body);
+        EventBO bodyMatchEvent = eventQryService.getBodyMatchEvent(EventSourceEnum.INTERFACE.getCode(), eventName, body);
         if (Objects.isNull(bodyMatchEvent)) {
             throw new BizException(ErrorCodeEnum.NON_MATCH_EVENT);
         }

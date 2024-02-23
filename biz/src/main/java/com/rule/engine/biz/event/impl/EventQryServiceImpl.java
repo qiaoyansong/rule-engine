@@ -5,7 +5,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.rule.engine.biz.beanmapper.EventBeanMapper;
 import com.rule.engine.biz.bo.EventBO;
 import com.rule.engine.biz.event.EventBaseInfoCacheService;
-import com.rule.engine.biz.event.EventBaseInfoService;
+import com.rule.engine.biz.event.EventQryService;
 import com.rule.engine.common.constant.CacheKeys;
 import com.rule.engine.common.utils.GroovyEngine;
 import com.rule.engine.dal.mapper.EventBaseInfoMapper;
@@ -27,9 +27,9 @@ import java.util.Map;
  * description：
  */
 @Service
-public class EventBaseInfoServiceImpl implements EventBaseInfoService {
+public class EventQryServiceImpl implements EventQryService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventBaseInfoServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventQryServiceImpl.class);
 
     @Resource
     private EventBaseInfoCacheService eventBaseInfoCacheService;

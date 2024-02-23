@@ -8,7 +8,7 @@ import com.rule.engine.biz.bo.EventBO;
  * @date ：Created in 2023/11/8 5:23 下午
  * description：
  */
-public interface EventBaseInfoService {
+public interface EventQryService {
 
     /**
      * 获取最匹配的事件
