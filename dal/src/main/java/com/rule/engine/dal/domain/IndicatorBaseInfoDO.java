@@ -47,16 +47,6 @@ public class IndicatorBaseInfoDO {
      */
     private Long creatorId;
 
-    /**
-     * 修改者姓名。
-     */
-    private String menderName;
-
-    /**
-     * 修改者ID.
-     */
-    private Long menderId;
-
     private Date gmtCreate;
 
     private Date gmtModify;
@@ -109,22 +99,6 @@ public class IndicatorBaseInfoDO {
         this.status = status;
     }
 
-    public Long getMenderId() {
-        return menderId;
-    }
-
-    public void setMenderId(Long menderId) {
-        this.menderId = menderId;
-    }
-
-    public String getMenderName() {
-        return menderName;
-    }
-
-    public void setMenderName(String menderName) {
-        this.menderName = menderName;
-    }
-
     public Long getCreatorId() {
         return creatorId;
     }
@@ -169,8 +143,6 @@ public class IndicatorBaseInfoDO {
         sb.append(", indicatorReturnType=").append(indicatorReturnType);
         sb.append(", indicatorType=").append(indicatorType);
         sb.append(", status=").append(status);
-        sb.append(", menderId=").append(menderId);
-        sb.append(", menderName=").append(menderName);
         sb.append(", creatorId=").append(creatorId);
         sb.append(", creatorName=").append(creatorName);
         sb.append(", gmtCreate=").append(gmtCreate);

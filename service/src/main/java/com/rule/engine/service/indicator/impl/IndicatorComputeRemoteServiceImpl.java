@@ -5,9 +5,9 @@ import com.rule.engine.api.result.RpcResult;
 import com.rule.engine.api.result.indicator.IndicatorResultInfo;
 import com.rule.engine.api.utils.RpcResultUtil;
 import com.rule.engine.biz.exception.BizException;
-import com.rule.engine.biz.indicator.calc.IndicatorComputeBizService;
+import com.rule.engine.biz.indicator.calc.IndicatorComputeService;
 import com.rule.engine.biz.util.BizChecker;
-import com.rule.engine.service.indicator.IndicatorComputeService;
+import com.rule.engine.api.indicator.IndicatorComputeRemoteService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +22,12 @@ import java.util.Objects;
  * description：
  */
 @Service
-public class IndicatorComputeServiceImpl implements IndicatorComputeService {
+public class IndicatorComputeRemoteServiceImpl implements IndicatorComputeRemoteService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorComputeService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndicatorComputeRemoteService.class);
 
     @Resource
-    private IndicatorComputeBizService indicatorComputeBizService;
+    private IndicatorComputeService indicatorComputeService;
 
     @Override
     public RpcResult<IndicatorResultInfo> handleBatchIndicatorCalculation(String eventName, String body) {
@@ -35,7 +35,7 @@ public class IndicatorComputeServiceImpl implements IndicatorComputeService {
             BizChecker.check(Objects.nonNull(eventName), ErrorCodeEnum.PARAM_ERROR);
             BizChecker.check(StringUtils.isNotBlank(eventName), ErrorCodeEnum.PARAM_ERROR);
             BizChecker.check(StringUtils.isNotBlank(body), ErrorCodeEnum.PARAM_ERROR);
-            return RpcResultUtil.success(indicatorComputeBizService.handleBatchIndicatorCalculation(eventName, body));
+            return RpcResultUtil.success(indicatorComputeService.handleBatchIndicatorCalculation(eventName, body));
         } catch (BizException e) {
             LOGGER.warn("IndicatorComputeService#handleBatchIndicatorCalculation warn eventName={}, body={}, e=", eventName, body, e);
             return RpcResultUtil.fail(e.getCode(), e.getMsg());

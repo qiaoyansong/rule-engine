@@ -57,14 +57,4 @@ public class IndicatorBaseInfoBO {
      */
     private Long creatorId;
 
-    /**
-     * 修改者姓名。
-     */
-    private String menderName;
-
-    /**
-     * 修改者ID.
-     */
-    private Long menderId;
-
 }

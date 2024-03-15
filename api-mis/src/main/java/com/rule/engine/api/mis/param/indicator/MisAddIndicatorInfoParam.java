@@ -1,6 +1,7 @@
 package com.rule.engine.api.mis.param.indicator;
 
 import com.rule.engine.api.enums.*;
+import com.rule.engine.api.mis.param.BaseMisOptParam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MisAddIndicatorInfoParam implements Serializable {
+public class MisAddIndicatorInfoParam extends BaseMisOptParam implements Serializable {
 
     private static final long serialVersionUID = -8315955833703174966L;
 
@@ -154,7 +155,7 @@ public class MisAddIndicatorInfoParam implements Serializable {
          * 操作符类型
          * #{@link JudgeTypeEnum#character}
          */
-        private List<Integer> judgeTypeList;
+        private List<String> judgeTypeList;
 
         /**
          * 右值取值列表，适用于右值输入类型为下拉列表的情况

@@ -1,4 +1,4 @@
-package com.rule.engine.biz.generic;
+package com.rule.engine.biz.indicator.calc.generic;
 
 import com.rule.engine.api.mis.param.generic.RemoteMethodCalculationParam;
 import com.rule.engine.biz.bo.CalculationResultBO;

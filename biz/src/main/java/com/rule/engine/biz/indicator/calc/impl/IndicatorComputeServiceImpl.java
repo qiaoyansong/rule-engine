@@ -9,7 +9,7 @@ import com.rule.engine.biz.bo.EventParseIndicatorInfoBO;
 import com.rule.engine.biz.event.EventQryService;
 import com.rule.engine.biz.exception.BizException;
 import com.rule.engine.biz.indicator.calc.EventParsingIndicatorInfoService;
-import com.rule.engine.biz.indicator.calc.IndicatorComputeBizService;
+import com.rule.engine.biz.indicator.calc.IndicatorComputeService;
 import com.rule.engine.common.utils.JsonPathUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * description：
  */
 @Service
-public class IndicatorComputeBizServiceImpl implements IndicatorComputeBizService {
+public class IndicatorComputeServiceImpl implements IndicatorComputeService {
 
     @Resource
     private EventQryService eventQryService;

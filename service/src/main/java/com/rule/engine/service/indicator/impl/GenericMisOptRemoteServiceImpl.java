@@ -8,7 +8,7 @@ import com.rule.engine.api.mis.param.generic.RemoteMethodCalculationParam;
 import com.rule.engine.api.result.RpcResult;
 import com.rule.engine.api.utils.RpcResultUtil;
 import com.rule.engine.biz.exception.BizException;
-import com.rule.engine.biz.generic.GenericOptService;
+import com.rule.engine.biz.indicator.calc.generic.GenericOptService;
 import com.rule.engine.biz.util.BizChecker;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

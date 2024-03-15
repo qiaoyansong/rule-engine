@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rule.engine.dal.mapper.IndicatorTemplateInfoMapper">
+  <resultMap id="BaseResultMap" type="com.rule.engine.dal.domain.IndicatorTemplateInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="indicator_id" jdbcType="BIGINT" property="indicatorId" />
+    <result column="right_value_place_holder" jdbcType="VARCHAR" property="rightValuePlaceHolder" />
+    <result column="right_value_input_type" jdbcType="TINYINT" property="rightValueInputType" />
+    <result column="judge_type_list" jdbcType="VARCHAR" property="judgeTypeList" />
+    <result column="right_value_list" jdbcType="VARCHAR" property="rightValueList" />
+    <result column="interface_name" jdbcType="VARCHAR" property="interfaceName" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, indicator_id, right_value_place_holder, right_value_input_type, judge_type_list, 
+    right_value_list, interface_name, gmt_create, gmt_modify
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from indicator_template_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from indicator_template_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.rule.engine.dal.domain.IndicatorTemplateInfo">
+    insert into indicator_template_info (id, indicator_id, right_value_place_holder, 
+      right_value_input_type, judge_type_list, right_value_list, 
+      interface_name, gmt_create, gmt_modify
+      )
+    values (#{id,jdbcType=BIGINT}, #{indicatorId,jdbcType=BIGINT}, #{rightValuePlaceHolder,jdbcType=VARCHAR}, 
+      #{rightValueInputType,jdbcType=TINYINT}, #{judgeTypeList,jdbcType=VARCHAR}, #{rightValueList,jdbcType=VARCHAR}, 
+      #{interfaceName,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rule.engine.dal.domain.IndicatorTemplateInfo">
+    insert into indicator_template_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="indicatorId != null">
+        indicator_id,
+      </if>
+      <if test="rightValuePlaceHolder != null">
+        right_value_place_holder,
+      </if>
+      <if test="rightValueInputType != null">
+        right_value_input_type,
+      </if>
+      <if test="judgeTypeList != null">
+        judge_type_list,
+      </if>
+      <if test="rightValueList != null">
+        right_value_list,
+      </if>
+      <if test="interfaceName != null">
+        interface_name,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="indicatorId != null">
+        #{indicatorId,jdbcType=BIGINT},
+      </if>
+      <if test="rightValuePlaceHolder != null">
+        #{rightValuePlaceHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="rightValueInputType != null">
+        #{rightValueInputType,jdbcType=TINYINT},
+      </if>
+      <if test="judgeTypeList != null">
+        #{judgeTypeList,jdbcType=VARCHAR},
+      </if>
+      <if test="rightValueList != null">
+        #{rightValueList,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceName != null">
+        #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rule.engine.dal.domain.IndicatorTemplateInfo">
+    update indicator_template_info
+    <set>
+      <if test="indicatorId != null">
+        indicator_id = #{indicatorId,jdbcType=BIGINT},
+      </if>
+      <if test="rightValuePlaceHolder != null">
+        right_value_place_holder = #{rightValuePlaceHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="rightValueInputType != null">
+        right_value_input_type = #{rightValueInputType,jdbcType=TINYINT},
+      </if>
+      <if test="judgeTypeList != null">
+        judge_type_list = #{judgeTypeList,jdbcType=VARCHAR},
+      </if>
+      <if test="rightValueList != null">
+        right_value_list = #{rightValueList,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceName != null">
+        interface_name = #{interfaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rule.engine.dal.domain.IndicatorTemplateInfo">
+    update indicator_template_info
+    set indicator_id = #{indicatorId,jdbcType=BIGINT},
+      right_value_place_holder = #{rightValuePlaceHolder,jdbcType=VARCHAR},
+      right_value_input_type = #{rightValueInputType,jdbcType=TINYINT},
+      judge_type_list = #{judgeTypeList,jdbcType=VARCHAR},
+      right_value_list = #{rightValueList,jdbcType=VARCHAR},
+      interface_name = #{interfaceName,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

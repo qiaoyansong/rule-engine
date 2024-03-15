@@ -1,4 +1,4 @@
-package com.rule.engine.biz.generic.impl;
+package com.rule.engine.biz.indicator.calc.generic.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.base.Strings;
@@ -16,7 +16,7 @@ import com.rule.engine.api.result.RpcResult;
 import com.rule.engine.biz.beanmapper.RemoteMethodCalculationBeanMapper;
 import com.rule.engine.biz.bo.CalculationResultBO;
 import com.rule.engine.biz.bo.RemoteMethodCalculationInfoBO;
-import com.rule.engine.biz.generic.GenericOptService;
+import com.rule.engine.biz.indicator.calc.generic.GenericOptService;
 import com.rule.engine.common.constant.CommonConstant;
 import com.rule.engine.common.utils.ThreadPoolUtil;
 import com.rule.engine.dal.mapper.RemoteMethodInfoMapper;
