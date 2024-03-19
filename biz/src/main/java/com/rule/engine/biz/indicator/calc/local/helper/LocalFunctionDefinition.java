@@ -41,11 +41,38 @@ public class LocalFunctionDefinition {
     /**
      * 参数名称List
      */
-    private List<String> args;
+    private List<ArgCfg> args;
 
     /**
      * 指标值类型，如果是三方服务，则指标值类型为三方服务的返回值类型，且不支持修改
      * #{@link IndicatorValueTypeEnum}
      */
     private Integer functionValueType;
+
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ArgCfg {
+
+        /**
+         * 入参名称
+         *
+         * @return
+         */
+        private String argName;
+
+        /**
+         * 参数数据类型
+         * #{@link IndicatorValueTypeEnum}
+         */
+        private IndicatorValueTypeEnum argType;
+
+        /**
+         * 参数描述信息
+         *
+         * @return
+         */
+        private String argDesc;
+    }
 }

@@ -2,6 +2,7 @@ package com.rule.engine.biz.indicator.calc.local.helper;
 
 import com.google.common.collect.Lists;
 import com.rule.engine.api.enums.ErrorCodeEnum;
+import com.rule.engine.api.enums.IndicatorValueTypeEnum;
 import com.rule.engine.biz.exception.BizException;
 import com.rule.engine.biz.indicator.calc.local.annotations.LocalFunctionClazz;
 import com.rule.engine.biz.indicator.calc.local.annotations.LocalFunctionParam;
@@ -18,10 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -47,6 +45,16 @@ public class LocalJavaFunctionHelper implements InitializingBean, ApplicationCon
             return null;
         }
         return bizAdapter.get(eventClazzName);
+    }
+
+    /**
+     * 获取全部定义信息
+     */
+    public List<LocalFunctionDefinition> getAllDefinition() {
+        if (MapUtils.isEmpty(bizAdapter)) {
+            return null;
+        }
+        return new ArrayList<>(bizAdapter.values());
     }
 
     @Override
@@ -75,7 +83,7 @@ public class LocalJavaFunctionHelper implements InitializingBean, ApplicationCon
 
     private LocalFunctionDefinition converterTo(Object bean, Method method, LocalFunctionTemplate methodAnnotation) {
         // 方法体的 形参
-        List<String> argsParam = getArgs(method);
+        List<LocalFunctionDefinition.ArgCfg> argsParam = getArgs(method);
         LocalFunctionDefinition info = new LocalFunctionDefinition();
         info.setFunctionName(methodAnnotation.functionName());
         info.setFunctionDesc(methodAnnotation.functionDesc());
@@ -86,13 +94,13 @@ public class LocalJavaFunctionHelper implements InitializingBean, ApplicationCon
         return info;
     }
 
-    private static List<String> getArgs(Method method) {
+    private static List<LocalFunctionDefinition.ArgCfg> getArgs(Method method) {
         // 方法体的 注解
         Annotation[][] parameterAnnotations = method.getParameterAnnotations();
         if (parameterAnnotations.length <= 0) {
             return Lists.newArrayList();
         }
-        ArrayList<String> rtn = Lists.newArrayList();
+        ArrayList<LocalFunctionDefinition.ArgCfg> rtn = Lists.newArrayList();
         Arrays.stream(parameterAnnotations).forEach(val -> {
             if (val == null || val.length <= 0) {
                 return;
@@ -102,10 +110,15 @@ public class LocalJavaFunctionHelper implements InitializingBean, ApplicationCon
                     return;
                 }
                 LocalFunctionParam annotation = (LocalFunctionParam) value;
-                if (StringUtils.isBlank(annotation.argName())) {
-                    return;
+                if (StringUtils.isBlank(annotation.argName()) || Objects.isNull(IndicatorValueTypeEnum.getByCode(annotation.argType().getCode()))) {
+                    LOGGER.error("LocalJavaFunctionHelper#getArgs, arg cfg valid");
+                    throw new BizException(ErrorCodeEnum.SYSTEM_ERROR);
                 }
-                rtn.add(annotation.argName());
+                LocalFunctionDefinition.ArgCfg argCfg = new LocalFunctionDefinition.ArgCfg();
+                argCfg.setArgDesc(annotation.argDesc());
+                argCfg.setArgName(annotation.argName());
+                argCfg.setArgType(annotation.argType());
+                rtn.add(argCfg);
             });
         });
         return rtn;

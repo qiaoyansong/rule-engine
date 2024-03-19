@@ -1,5 +1,7 @@
 package com.rule.engine.biz.indicator.calc.local.annotations;
 
+import com.rule.engine.api.enums.IndicatorValueTypeEnum;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -20,4 +22,17 @@ public @interface LocalFunctionParam {
      * @return
      */
     String argName();
+
+    /**
+     * 参数数据类型
+     * #{@link IndicatorValueTypeEnum}
+     */
+    IndicatorValueTypeEnum argType();
+
+    /**
+     * 参数描述信息
+     *
+     * @return
+     */
+    String argDesc();
 }

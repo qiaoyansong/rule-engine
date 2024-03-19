@@ -1,4 +1,4 @@
-package com.rule.engine.service.indicator.impl;
+package com.rule.engine.service.generic.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.rule.engine.api.enums.ErrorCodeEnum;

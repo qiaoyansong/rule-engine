@@ -54,7 +54,7 @@ public class MisAddIndicatorInfoParam extends BaseMisOptParam implements Seriali
     private EventParseInfo eventParseInfo;
 
     /**
-     * 三方服务配置
+     * 三方服务配置 or 本地函数调用
      */
     private RemoteMethodConfig remoteMethodConfig;
 
